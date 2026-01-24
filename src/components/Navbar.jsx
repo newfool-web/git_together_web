@@ -2,7 +2,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-300 shadow-sm">
   <div className="flex flex-1 flex-row">
     <img src="https://thumbs.dreamstime.com/b/handshake-emoji-featuring-diverse-skin-tones-white-background-image-handshake-emoji-featuring-diverse-skin-tones-symbolizing-376082597.jpg" alt="Error" className="h-10 rounded-3xl" />
     <a className="btn btn-ghost text-xl"> GitTogether</a>

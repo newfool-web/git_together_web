@@ -1,25 +1,29 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Body from "./components/Body"
-import Profile from "./components/Profile"
-import Login from "./components/Login"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Body from "./components/Body";
+import Profile from "./components/Profile";
+import Login from "./components/Login";
+import Error from "./components/Error";
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body />,
+    children: [
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+    ],
+    errorElement: <Error />
+  },  
+]);
 
 function App() {
-  
-
-  return (
-    <>
-      <BrowserRouter basename="/">
-        <Routes>
-          <Route path ="/" element={<Body />} >
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/login" element={<Login />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      
-      
-    </>
-  )
+  return <RouterProvider router={appRouter} />;
 }
 
-export default App
+export default App;
