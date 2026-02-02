@@ -5,12 +5,17 @@ import Login from "./components/Login";
 import Error from "./components/Error";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Feed from "./components/Feed";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <Body />,
     children: [
+      {
+        path:"",
+        element: <Feed />
+      },
       {
         path: "profile",
         element: <Profile />,
@@ -28,7 +33,7 @@ function App() {
 
   return(
      <Provider store ={appStore}>
-        <RouterProvider router={appRouter} />;
+        <RouterProvider router={appRouter} />
      </Provider>
   )
 }
