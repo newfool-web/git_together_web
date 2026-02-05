@@ -6,6 +6,8 @@ import Error from "./components/Error";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Feed from "./components/Feed";
+import Connections from "./components/Connections";
+import Requests from "./components/Requests";
 
 const appRouter = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const appRouter = createBrowserRouter([
         path: "login",
         element: <Login />,
       },
+      {
+        path:"connections",
+        element: <Connections />
+      },
+      {
+        path:"requests",
+        element: <Requests />
+      }
     ],
     errorElement: <Error />
   },  
