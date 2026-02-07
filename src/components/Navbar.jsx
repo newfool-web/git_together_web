@@ -7,6 +7,7 @@ import { removeUser } from "../utils/userSlice";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -20,6 +21,7 @@ const Navbar = () => {
 
     }
   };
+  if(!user) return;
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -37,7 +39,7 @@ const Navbar = () => {
       {user && (
         <div className="flex">
           <p className="mr-10 mt-2">
-            {"Welcome, " + user.firstName + " " + user.lastName}{" "}
+            {"Welcome, " + user?.firstName + " " + user?.lastName}{" "}
           </p>
           <div className="flex gap-2 mr-10">
             <div className="dropdown dropdown-end ">

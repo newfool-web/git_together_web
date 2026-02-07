@@ -8,6 +8,7 @@ import appStore from "./utils/appStore";
 import Feed from "./components/Feed";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
+import RegisterUser from "./components/RegisterUser";
 
 const appRouter = createBrowserRouter([
   {
@@ -37,7 +38,12 @@ const appRouter = createBrowserRouter([
       
     ],
     errorElement: <Error />
-  },  
+  }, 
+  {
+    path:"/register",
+    element:<RegisterUser />,
+    errorElement: <Error />
+  } 
 ]);
 
 function App() {
