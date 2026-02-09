@@ -13,6 +13,7 @@ const RegisterUser = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false);
   const handleRegister = async () => {
     try {
         setError("");
@@ -27,14 +28,20 @@ const RegisterUser = () => {
         { withCredentials: true },
       );
       
-      dispatch(addUser(res?.data?.user));      
-      navigate("/profile");
+      dispatch(addUser(res?.data?.user));  
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        navigate("/profile");
+      }, 1000);    
+      
     } catch (error) {
         console.log(error)
       setError(error?.response?.data);
     }
   };
   return (
+    <>
     <div className="flex justify-center my-10">
       <div className="flex justify-center mx-10">
         <div className="card bg-base-300 w-96 shadow-xl">
@@ -92,7 +99,7 @@ const RegisterUser = () => {
                 </label>
               </label>
             </div>
-            <p className="text-red-500">{error}</p>
+            <p className="text-red-500 mx-auto">{error}</p>
             <div className="card-actions justify-center m-2">
               <button className="btn btn-primary" onClick={handleRegister}>Register</button>
             </div>
@@ -100,6 +107,14 @@ const RegisterUser = () => {
         </div>
       </div>
     </div>
+    {showToast && (
+        <div className="toast toast-top toast-center">
+          <div className="alert alert-success">
+            <span>User Created Successfully</span>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
