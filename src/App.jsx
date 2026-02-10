@@ -9,6 +9,7 @@ import Feed from "./components/Feed";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
 import RegisterUser from "./components/RegisterUser";
+import Landing from "./components/Landing";
 
 const appRouter = createBrowserRouter([
   {
@@ -16,8 +17,12 @@ const appRouter = createBrowserRouter([
     element: <Body />,
     children: [
       {
-        path:"",
-        element: <Feed />
+        path: "",
+        element: <Landing />,
+      },
+      {
+        path: "feed",
+        element: <Feed />,
       },
       {
         path: "profile",
@@ -28,31 +33,31 @@ const appRouter = createBrowserRouter([
         element: <Login />,
       },
       {
-        path:"connections",
-        element: <Connections />
+        path: "connections",
+        element: <Connections />,
       },
       {
-        path:"requests",
-        element: <Requests />
+        path: "requests",
+        element: <Requests />,
       },
-      
+      {
+        path: "/register",
+        element: <RegisterUser />,    
+      },
     ],
-    errorElement: <Error />
-  }, 
-  {
-    path:"/register",
-    element:<RegisterUser />,
-    errorElement: <Error />
-  } 
+    errorElement: <Error />,
+  },
+  
 ]);
 
 function App() {
-
-  return(
-     <Provider store ={appStore}>
-        <RouterProvider router={appRouter} />
-     </Provider>
-  )
+  return (
+    <Provider store={appStore}>
+      <RouterProvider router={appRouter} />
+    </Provider>
+  );
 }
 
 export default App;
+
+

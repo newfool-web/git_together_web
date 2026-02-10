@@ -20,7 +20,7 @@ const UserCard = ({ user }) => {
 
   return (
     <div className="card w-96 bg-base-200 shadow-2xl overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
-      {/* ── Image ────────────────────────────────── */}
+      
       <figure className="relative h-80 overflow-hidden">
         <img
           src={photoUrl || "/placeholder.svg"}
@@ -28,10 +28,10 @@ const UserCard = ({ user }) => {
           className="h-full w-full object-cover"
         />
 
-        {/* gradient overlay for text readability */}
+        
         <div className="absolute inset-0 bg-linear-to-t from-base-200 via-transparent to-transparent" />
 
-        {/* name overlay pinned to bottom of image */}
+        
         <div className="absolute bottom-0 left-0 w-full px-6 pb-4">
           <h2 className="text-2xl font-bold text-base-content drop-shadow-lg">
             {firstName + " " + lastName}

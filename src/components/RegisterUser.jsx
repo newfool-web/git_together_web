@@ -40,76 +40,159 @@ const RegisterUser = () => {
       setError(error?.response?.data);
     }
   };
-  return (
+
+  const fields = [
+    {
+      label: "First Name",
+      type: "text",
+      value: firstName,
+      onChange: (e) => setFirstName(e.target.value),
+      placeholder: "",
+    },
+    {
+      label: "Last Name",
+      type: "text",
+      value: lastName,
+      onChange: (e) => setLastName(e.target.value),
+      placeholder: "",
+    },
+    {
+      label: "Email",
+      type: "text",
+      value: emailId,
+      onChange: (e) => setEmailId(e.target.value),
+      placeholder: "abc@example.com",
+    },
+    {
+      label: "Password",
+      type: "password",
+      value: password,
+      onChange: (e) => setPassword(e.target.value),
+      placeholder: "Enter a strong password",
+    },
+  ];
+
+   return (
     <>
-    <div className="flex justify-center my-10">
-      <div className="flex justify-center mx-10">
-        <div className="card bg-base-300 w-96 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title justify-center">Register User</h2>
-            <div>
-              <label className="form-control w-full max-w-xs my-2">
-                <div className="label">
-                  <span className="label-text">First Name:</span>
-                </div>
-                <input
-                  type="text"
-                  value={firstName}
-                  className="input input-bordered w-full max-w-xs"
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </label>
-              <label className="form-control w-full max-w-xs my-2">
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Last Name:</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={lastName}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </label>
-              </label>
-              <label className="form-control w-full max-w-xs my-2">
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Email Id:</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={emailId}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setEmailId(e.target.value)}
-                  />
-                </label>
-              </label>
-              <label className="form-control w-full max-w-xs my-2">
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Password</span>
-                  </div>
-                  <input
-                    type="password"
-                    value={password}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </label>
-              </label>
+      <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
+        <div className="card w-full max-w-md bg-base-100 shadow-2xl">
+          <div className="card-body gap-6">
+            {/* Header */}
+            <div className="text-center">
+              <h2 className="text-2xl font-bold tracking-tight">
+                Create Account
+              </h2>
+              <p className="text-sm text-base-content/60 mt-1">
+                Fill in your details to get started
+              </p>
             </div>
-            <p className="text-red-500 mx-auto">{error}</p>
-            <div className="card-actions justify-center m-2">
-              <button className="btn btn-primary" onClick={handleRegister}>Register</button>
+
+            
+            <div className="divider my-0" />
+
+            
+            <div className="flex flex-col gap-4">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {fields.slice(0, 2).map((field) => (
+                  <label key={field.label} className="form-control w-full">
+                    <div className="label">
+                      <span className="label-text font-medium">
+                        {field.label}
+                      </span>
+                    </div>
+                    <input
+                      type={field.type}
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder={field.placeholder}
+                      className="input input-bordered w-full focus:input-primary transition-colors"
+                    />
+                  </label>
+                ))}
+              </div>
+
+              
+
+              {fields.slice(2).map((field) => (
+                <label key={field.label} className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text font-medium">
+                      {field.label}
+                    </span>
+                  </div>
+                  <input
+                    type={field.type}
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder={field.placeholder}
+                    className="input input-bordered w-full focus:input-primary transition-colors"
+                  />
+                </label>
+              ))}
             </div>
+
+        
+        
+
+            {error && (
+              <div className="alert alert-error text-sm py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="stroke-current shrink-0 h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{error}</span>
+              </div>
+            )}
+
+      
+      
+            <button
+              className="btn btn-primary w-full text-base"
+              onClick={handleRegister}
+            >
+              Register
+            </button>
+
+          
+          
+            <p className="text-center text-sm text-base-content/60">
+              Already have an account?{" "}
+              <a className="link link-primary font-medium" href="/login">
+                Sign in
+              </a>
+            </p>
           </div>
         </div>
       </div>
-    </div>
-    {showToast && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
+
+    
+    
+      {showToast && (
+        <div className="toast toast-top toast-center z-50">
+          <div className="alert alert-success shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
             <span>User Created Successfully</span>
           </div>
         </div>

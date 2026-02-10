@@ -51,7 +51,7 @@ const Requests = () => {
   return (
     <div className="min-h-screen bg-base-200 py-12 px-4">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
+        
         <div className="text-center mb-10">
           <h1 className="text-4xl font-extrabold text-base-content tracking-tight">
             Connection Requests
@@ -62,7 +62,7 @@ const Requests = () => {
           <div className="divider max-w-xs mx-auto" />
         </div>
 
-        {/* Request Cards */}
+        
         <div className="flex flex-col gap-5">
           {requests.map((request) => {
             const { _id, firstName, lastName, photoUrl, age, gender, about } =

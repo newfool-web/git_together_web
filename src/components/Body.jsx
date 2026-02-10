@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -9,14 +9,23 @@ import { addUser } from "../utils/userSlice";
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const userData = useSelector((store) => store.user);
   const [loading, setLoading] = useState(true);
 
   const fetchUser = async () => {
+    
+    const publicRoutes = ["/", "/login", "/register"];
+    if (publicRoutes.includes(location.pathname)) {
+      setLoading(false);
+      return;
+    }
+
     if (userData) {
       setLoading(false);
       return;
     }
+
     try {
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
@@ -34,7 +43,8 @@ const Body = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   if (loading) return <div>Loading authentication...</div>;
 

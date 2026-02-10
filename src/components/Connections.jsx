@@ -41,7 +41,8 @@ const Connections = () => {
 
 return (
     <div data-theme="night" className="min-h-screen">
-      {/* Header */}
+      
+
       <div className=" sticky top-0  backdrop-blur-md bg-opacity-90">
         <div className="max-w-3xl mx-auto px-4 py-5 flex items-center justify-between">
           <div>
@@ -59,7 +60,9 @@ return (
         </div>
       </div>
 
-      {/* Connection Cards */}
+      
+
+      
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-4">
         {connections.map((connection) => {
           const { _id, firstName, lastName, photoUrl, age, gender, about } = connection;

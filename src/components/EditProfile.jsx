@@ -77,10 +77,14 @@ const EditProfile = ({ user }) => {
       className="min-h-screen bg-base-200 flex items-center justify-center py-12 px-4"
     >
       <div className="flex flex-col lg:flex-row gap-10 items-start w-full max-w-4xl">
-        {/* ─── Edit Profile Card ─── */}
+        
+
+
         <div className="card bg-base-100 shadow-2xl w-full lg:max-w-md">
           <div className="card-body gap-5">
-            {/* Header with avatar */}
+            
+            
+
             <div className="flex flex-col items-center gap-3">
               <div className="avatar">
                 <div className="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -100,7 +104,9 @@ const EditProfile = ({ user }) => {
 
             <div className="divider my-0" />
 
-            {/* Dynamic field rows */}
+           
+           
+
             {rows.map((row, rowIdx) => (
               <div
                 key={rowIdx}
@@ -127,7 +133,9 @@ const EditProfile = ({ user }) => {
               </div>
             ))}
 
-            {/* Error */}
+           
+           
+
             {error && (
               <div className="alert alert-error py-2 text-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24">
@@ -137,7 +145,9 @@ const EditProfile = ({ user }) => {
               </div>
             )}
 
-            {/* Save button */}
+            
+            
+
             <div className="card-actions justify-center mt-2">
               <button
                 className="btn btn-primary btn-wide gap-2"
@@ -152,7 +162,9 @@ const EditProfile = ({ user }) => {
           </div>
         </div>
 
-        {/* ─── Live Preview Card ─── */}
+        
+        
+        
         <div className="card bg-base-100 shadow-2xl w-full lg:max-w-sm">
           <div className="card-body items-center text-center gap-4">
             <h3 className="font-semibold text-base-content/70 uppercase tracking-wider text-xs">
@@ -196,7 +208,9 @@ const EditProfile = ({ user }) => {
         </div>
       </div>
 
-      {/* ─── Toast ─── */}
+      
+
+      
       {showToast && (
         <div className="toast toast-top toast-center z-50">
           <div className="alert alert-success shadow-lg">

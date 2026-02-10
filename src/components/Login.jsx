@@ -22,7 +22,7 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data.user));
-      navigate("/");
+      navigate("/feed");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");
       setEmailId("");
@@ -33,7 +33,8 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
       <div className="card w-full max-w-md bg-base-100 shadow-2xl">
-        {/* Card Image */}
+        
+        
         <figure className="relative h-48 overflow-hidden">
           <img
             src="https://thumbs.dreamstime.com/b/handshake-emoji-featuring-diverse-skin-tones-white-background-image-handshake-emoji-featuring-diverse-skin-tones-symbolizing-376082597.jpg"
@@ -44,7 +45,8 @@ const Login = () => {
         </figure>
 
         <div className="card-body gap-5 -mt-8 relative z-10">
-          {/* Title */}
+         
+         
           <h2 className="card-title text-3xl font-bold justify-center">
             Welcome Back
           </h2>
@@ -52,7 +54,8 @@ const Login = () => {
             Sign in to continue
           </p>
 
-          {/* Email Field */}
+          
+          
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text font-medium mx-10 py-2">Email Address:</span>
@@ -85,7 +88,8 @@ const Login = () => {
             </label>
           </div>
 
-          {/* Password Field */}
+          
+          
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text font-medium mx-10 py-2">Password:</span>
@@ -118,7 +122,8 @@ const Login = () => {
             </label>
           </div>
 
-          {/* Error Message */}
+          
+          
           {error && (
             <div className="alert alert-error shadow-sm py-2 text-sm">
               <svg
@@ -139,7 +144,9 @@ const Login = () => {
             </div>
           )}
 
-          {/* Login Button */}
+          
+          
+
           <div className="card-actions mt-2 justify-end">
             <button
               className="btn btn-primary  text-base"
@@ -148,6 +155,12 @@ const Login = () => {
               Login
             </button>
           </div>
+          <p className="text-center text-sm text-base-content/60">
+              New User?{" "}
+              <a className="link link-primary font-medium" href="/register">
+                Register Here!
+              </a>
+            </p>
         </div>
       </div>
     </div>

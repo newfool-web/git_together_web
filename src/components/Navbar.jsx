@@ -21,11 +21,12 @@ const Navbar = () => {
 
     }
   };
-  if(!user) return;
 
     return (
     <div className="navbar bg-base-200/60 backdrop-blur-md shadow-lg sticky top-0 z-50 px-4 md:px-8">
-      {/* ── Brand ── */}
+    
+    
+    
       <div className="flex-1 flex items-center gap-3">
         <div className="avatar">
           <div className="w-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
@@ -43,15 +44,19 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* ── User Section ── */}
+    
+    
       {user && (
         <div className="flex items-center gap-4">
-          {/* Welcome text — hidden on small screens */}
+        
+        
+
           <span className="hidden sm:inline-block text-sm font-medium opacity-80">
             {"Welcome, " + user?.firstName + " " + user?.lastName}
           </span>
 
-          {/* Avatar Dropdown */}
+          
+          
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
