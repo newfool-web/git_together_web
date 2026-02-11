@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://git-together-theta.vercel.app/:path*"
+      "destination": "https://git-together-theta.vercel.app/api/:path*"
     },
     {
       "source": "/(.*)",
