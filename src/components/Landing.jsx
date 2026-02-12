@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import img from "../assets/img1.png"
 
 const Landing = () => {
   const user = useSelector((store) => store.user);
@@ -10,7 +11,7 @@ const Landing = () => {
         
         
         <img
-          src="src\assets\img1.png"
+          src={img}
           alt="Background"
           className="absolute inset-0 h-full w-full object-cover"
         />
