@@ -42,12 +42,12 @@ const appRouter = createBrowserRouter([
         element: <Requests />,
       },
       {
-        path: "/register",
-        element: <RegisterUser />,    
+        path: "register",
+        element: <RegisterUser />,
       },
       {
-        path: "/chat/:targetUserId",
-        element: <Chat />,    
+        path: "chat/:targetUserId",
+        element: <Chat />,
       },
     ],
     errorElement: <Error />,

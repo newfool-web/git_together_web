@@ -5,6 +5,15 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 
+// Normalizes a raw chat message from the API into the shape the UI renders.
+const mapMessages = (rawMessages = []) =>
+  rawMessages.map(({ senderId, text, createdAt }) => ({
+    firstName: senderId?.firstName,
+    lastName: senderId?.lastName,
+    text,
+    createdAt,
+  }));
+
 const Chat = () => {
   const { targetUserId } = useParams();
   const [messages, setMessages] = useState([]);
@@ -21,6 +30,7 @@ const Chat = () => {
   const prevScrollHeightRef = useRef(0);
   const prevScrollTopRef = useRef(0);
   const isLoadingMoreRef = useRef(false);
+  const socketRef = useRef(null);
 
   const fetchChatMessages = async () => {
     try {
@@ -32,17 +42,7 @@ const Chat = () => {
         },
       });
 
-      console.log(chat);
-
-      const chatMessages = chat?.data?.messages.map((msg) => {
-        const { senderId, text, createdAt } = msg;
-        return {
-          firstName: senderId?.firstName,
-          lastName: senderId?.lastName,
-          text,
-          createdAt,
-        };
-      });
+      const chatMessages = mapMessages(chat?.data?.messages);
       setMessages(chatMessages);
       setError("");
       setIsInitialLoading(false);
@@ -83,15 +83,7 @@ const Chat = () => {
         },
       });
 
-      const olderChatMessages = chat?.data?.messages.map((msg) => {
-        const { senderId, text, createdAt } = msg;
-        return {
-          firstName: senderId?.firstName,
-          lastName: senderId?.lastName,
-          text,
-          createdAt,
-        };
-      });
+      const olderChatMessages = mapMessages(chat?.data?.messages);
 
       if (!olderChatMessages?.length) {
         setHasMore(false);
@@ -149,6 +141,7 @@ const Chat = () => {
       return;
     }
     const socket = createSocketConnection();
+    socketRef.current = socket;
     socket.emit("joinChat", {
       firstName: user.firstName,
       userId,
@@ -156,7 +149,6 @@ const Chat = () => {
     });
 
     socket.on("messageReceived", ({ firstName, lastName, text, createdAt }) => {
-      console.log(firstName + " :  " + text);
       setMessages((messages) => [
         ...messages,
         {
@@ -170,12 +162,14 @@ const Chat = () => {
 
     return () => {
       socket.disconnect();
+      socketRef.current = null;
     };
   }, [userId, targetUserId, error]);
 
   const sendMessage = () => {
     if (!newMessage.trim()) return;
-    const socket = createSocketConnection();
+    const socket = socketRef.current;
+    if (!socket) return;
     socket.emit("sendMessage", {
       firstName: user.firstName,
       lastName: user.lastName,

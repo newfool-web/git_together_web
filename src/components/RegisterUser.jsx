@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { addUser } from "../utils/userSlice";
 import axios from "axios";
 
@@ -18,7 +18,7 @@ const RegisterUser = () => {
     try {
         setError("");
       const res = await axios.post(
-        BASE_URL + "/signup",
+        BASE_URL + "/auth/signup",
         {
           firstName,
           lastName,
@@ -167,9 +167,9 @@ const RegisterUser = () => {
           
             <p className="text-center text-sm text-base-content/60">
               Already have an account?{" "}
-              <a className="link link-primary font-medium" href="/login">
+              <Link className="link link-primary font-medium" to="/login">
                 Sign in
-              </a>
+              </Link>
             </p>
           </div>
         </div>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        BASE_URL + "/login",
+        BASE_URL + "/auth/login",
         { emailId, password },
         { withCredentials: true }
       );
@@ -157,9 +157,9 @@ const Login = () => {
           </div>
           <p className="text-center text-sm text-base-content/60">
               New User?{" "}
-              <a className="link link-primary font-medium" href="/register">
+              <Link className="link link-primary font-medium" to="/register">
                 Register Here!
-              </a>
+              </Link>
             </p>
         </div>
       </div>

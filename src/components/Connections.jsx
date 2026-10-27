@@ -13,7 +13,6 @@ const Connections = () => {
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
       });
-      console.log(res)
       dispatch(addConnections(res?.data?.data));
     } catch (err) {
       
@@ -106,12 +105,12 @@ return (
                   </div>
 
                   <div className="card-actions shrink-0 self-center">
-                    <a href={"/chat/" + _id} className="btn btn-primary btn-sm gap-1.5 no-underline">
+                    <Link to={"/chat/" + _id} className="btn btn-primary btn-sm gap-1.5 no-underline">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                       </svg>
                       Chat
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
