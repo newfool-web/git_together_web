@@ -1,16 +1,127 @@
-# React + Vite
+# GitTogether Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GitTogether is a developer networking and collaboration platform. It helps developers discover people with similar interests, send or receive connection requests, manage their developer profile, and chat with accepted connections.
 
-Currently, two official plugins are available:
+**Live app:** https://git-together-theta.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> **Backend repository:** This frontend is a separate repository. GitTogether's API and real-time server live in [git_together](https://github.com/newfool-web/git_together). The frontend and backend must be run together for authentication, feeds, connections, and chat to work.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Developer registration and login
+- Public landing page
+- Developer discovery feed
+- Send interested or ignored responses to developers
+- Accept or reject incoming connection requests
+- View all accepted connections
+- Create and edit a developer profile
+- Real-time chat with connections using Socket.IO
+- Responsive UI styled with Tailwind CSS and DaisyUI
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- Vite 7
+- React Router
+- Redux Toolkit and React Redux
+- Axios
+- Socket.IO Client
+- Tailwind CSS 4
+- DaisyUI
+- ESLint
+
+## Project Structure
+
+```text
+src/
+  components/   Pages and reusable UI components
+  utils/        Redux store, slices, API URL, and Socket.IO setup
+  assets/       Local images used by the application
+  App.jsx       Application routes
+  main.jsx      React entry point
+```
+
+## Prerequisites
+
+- Node.js 18 or newer
+- npm
+- The GitTogether backend running locally or deployed
+
+## Getting Started
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/newfool-web/git_together_web.git
+   cd git_together_web
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Configure the backend URL.
+
+   Create a `.env` file in the project root:
+
+   ```env
+   VITE_BACKEND_URL=http://localhost:3000
+   ```
+
+   The default local API is `http://localhost:3000/api`, and the app uses it without additional configuration when running on localhost.
+
+4. Start the frontend:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local Vite URL shown in the terminal.
+
+## Backend Setup
+
+The backend is maintained in a separate repository:
+
+- Repository: https://github.com/newfool-web/git_together
+
+Follow that repository's setup instructions to start the API and Socket.IO server. When running locally, ensure the backend is available on port `3000`, or set `VITE_BACKEND_URL` to the deployed or alternate backend origin.
+
+## Environment Variables
+
+| Variable | Description | Example |
+| --- | --- | --- |
+| `VITE_BACKEND_URL` | Backend origin without `/api` | `http://localhost:3000` |
+
+In production, `VITE_BACKEND_URL` can point to the hosted backend. If omitted, the app uses `/api` as the API base.
+
+## Available Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Create a production build in `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint across the project |
+
+## Application Routes
+
+| Route | Description |
+| --- | --- |
+| `/` | Landing page |
+| `/register` | Create an account |
+| `/login` | Log in |
+| `/feed` | Discover developers |
+| `/profile` | View or edit the current profile |
+| `/connections` | View accepted connections |
+| `/requests` | Review pending connection requests |
+| `/chat/:targetUserId` | Chat with a connection |
+
+## API Integration
+
+The frontend sends credentialed requests to the backend under `/api` and connects to the Socket.IO server for real-time chat. Local Socket.IO development connects directly to `http://localhost:3000`; production uses the `/api/socket.io` path.
+
+## License
+
+No license has been specified for this project.
