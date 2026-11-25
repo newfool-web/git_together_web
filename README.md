@@ -122,6 +122,4 @@ In production, `VITE_BACKEND_URL` can point to the hosted backend. If omitted, t
 
 The frontend sends credentialed requests to the backend under `/api` and connects to the Socket.IO server for real-time chat. Local Socket.IO development connects directly to `http://localhost:3000`; production uses the `/api/socket.io` path.
 
-## License
 
-No license has been specified for this project.
